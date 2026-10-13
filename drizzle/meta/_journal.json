@@ -8,6 +8,20 @@
       "when": 1789225135997,
       "tag": "0000_curly_human_robot",
       "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "7",
+      "when": 1791877192000,
+      "tag": "0001_enable_rls_default_deny",
+      "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1791878806000,
+      "tag": "0002_index_foreign_keys",
+      "breakpoints": true
     }
   ]
 }
