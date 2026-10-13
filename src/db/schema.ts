@@ -383,6 +383,7 @@ export const products = pgTable(
   (t) => [
     index("products_merchant_status_idx").on(t.merchantId, t.status),
     index("products_merchant_name_idx").on(t.merchantId, t.name),
+    index("products_category_idx").on(t.categoryId),
     uniqueIndex("products_merchant_sku_uq").on(t.merchantId, t.sku),
   ],
 );
@@ -478,6 +479,7 @@ export const conversations = pgTable(
       t.lastMessageAt,
     ),
     index("conversations_customer_idx").on(t.customerId),
+    index("conversations_assigned_agent_idx").on(t.assignedAgentId),
   ],
 );
 
@@ -574,6 +576,7 @@ export const orders = pgTable(
     index("orders_merchant_status_idx").on(t.merchantId, t.orderStatus),
     index("orders_merchant_created_idx").on(t.merchantId, t.createdAt),
     index("orders_customer_idx").on(t.customerId),
+    index("orders_conversation_idx").on(t.conversationId),
   ],
 );
 
@@ -619,6 +622,7 @@ export const subscriptions = pgTable(
   },
   (t) => [
     index("subscriptions_merchant_idx").on(t.merchantId),
+    index("subscriptions_plan_idx").on(t.planId),
     uniqueIndex("subscriptions_provider_sub_uq").on(
       t.provider,
       t.providerSubscriptionId,
@@ -659,6 +663,7 @@ export const payments = pgTable(
   },
   (t) => [
     index("payments_merchant_idx").on(t.merchantId),
+    index("payments_subscription_idx").on(t.subscriptionId),
     uniqueIndex("payments_provider_payment_uq").on(
       t.provider,
       t.providerPaymentId,
@@ -777,6 +782,8 @@ export const automationRuns = pgTable(
   (t) => [
     index("automation_runs_scheduled_idx").on(t.scheduledFor, t.status),
     index("automation_runs_merchant_rule_idx").on(t.merchantId, t.ruleId),
+    index("automation_runs_rule_idx").on(t.ruleId),
+    index("automation_runs_conversation_idx").on(t.conversationId),
   ],
 );
 
